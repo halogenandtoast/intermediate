@@ -1,12 +1,23 @@
 <%= form_for(@shout) do |form| %>
-  <%= form.text_field :body, placeholder: "Shout here" %>
+  <%= hidden_field_tag :content_type, 'TextShout' %>
+  <%= form.fields_for(:content) do |content_form| %>
+    <%= content_form.text_field :body, placeholder: "Shout here" %>
+  <% end %>
+  <%= form.submit "Shout!" %>
+<% end %>
+
+<%= form_for(@shout) do |form| %>
+  <%= hidden_field_tag :content_type, 'PhotoShout' %>
+  <%= form.fields_for(:content) do |content_form| %>
+    <%= content_form.file_field :image %>
+  <% end %>
   <%= form.submit "Shout!" %>
 <% end %>
 
 <% @shouts.each do |shout| %>
   <%= div_for(shout) do %>
     <%= shout.user_email %>
-    <%= shout.body %>
-    <%= time_ago_in_words(shout.created_at) %> ago
+    <p><%= render shout.content %></p>
+    <time><%= time_ago_in_words(shout.created_at) %> ago</time>
   <% end %>
 <% end %>

@@ -11,16 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826150234) do
+ActiveRecord::Schema.define(version: 20130826181742) do
 
-  create_table "shouts", force: true do |t|
-    t.integer  "user_id"
-    t.text     "body"
+  create_table "photo_shouts", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "shouts", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "content_id"
+    t.string   "content_type"
+  end
+
+  add_index "shouts", ["content_id", "content_type"], name: "index_shouts_on_content_id_and_content_type"
   add_index "shouts", ["user_id"], name: "index_shouts_on_user_id"
+
+  create_table "text_shouts", force: true do |t|
+    t.text     "body",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.datetime "created_at",                     null: false
