@@ -11,6 +11,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'clearance'
 gem 'paperclip'
+gem 'active_model_serializers'
 
 group :development do
   gem 'better_errors'

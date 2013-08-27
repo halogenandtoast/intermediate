@@ -1,0 +1,7 @@
+<%= shout_form_for('Text') do |form| %>
+  <%= form.text_field :body, placeholder: "Shout here" %>
+<% end %>
+
+<%= shout_form_for('Photo') do |form| %>
+  <%= form.file_field :image %>
+<% end %>

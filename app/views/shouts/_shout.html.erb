@@ -1,0 +1,5 @@
+<%= div_for(shout) do %>
+  <%= link_to shout.user_email, shout.user %>
+  <p><%= render shout.content %></p>
+  <time><%= time_ago_in_words(shout.created_at) %> ago</time>
+<% end %>
