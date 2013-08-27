@@ -4,9 +4,9 @@ class ShoutFactory
     @scope = scope
   end
 
-  def create params
-    content = build_content(params[:content])
-    scope.create(content: content)
+  def build params
+    content = build_content(params)
+    scope.new(content: content)
   end
 
   private
@@ -14,7 +14,11 @@ class ShoutFactory
   attr_reader :content_type, :scope
 
   def build_content params
-    content_class.new(content_params(params))
+    if params
+      content_class.new(content_params(params[:content]))
+    else
+      content_class.new
+    end
   end
 
   def content_class

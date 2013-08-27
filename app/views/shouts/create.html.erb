@@ -19,11 +19,3 @@
   <% end %>
   <%= form.submit "Shout!" %>
 <% end %>
-
-<% @shouts.each do |shout| %>
-  <%= div_for(shout) do %>
-    <%= shout.user_email %>
-    <p><%= render shout.content %></p>
-    <time><%= time_ago_in_words(shout.created_at) %> ago</time>
-  <% end %>
-<% end %>
