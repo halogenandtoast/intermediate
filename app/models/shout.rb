@@ -6,4 +6,8 @@ class Shout < ActiveRecord::Base
   validates_associated :content
 
   delegate :email, to: :user, prefix: true
+
+  def content
+    super || NullContent.new
+  end
 end
